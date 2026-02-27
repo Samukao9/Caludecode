@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Template {
+  id        Int      @id @default(autoincrement())
+  name      String
+  subject   String
+  body      String
+  createdAt DateTime @default(now())
+}
+
+model Campaign {
+  id              Int      @id @default(autoincrement())
+  sentAt           DateTime @default(now())
+  subject          String
+  recipientsCount  Int
+  successCount     Int
+  failureCount     Int
+  copyHtml         String
+  failedEmails     String
+}
